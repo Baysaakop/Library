@@ -1,14 +1,17 @@
-from rest_framework.generics import ListAPIView, RetrieveAPIView
+from rest_framework import viewsets
 
-from books.models import Book
-from .serializers import BookSerializer
+from books.models import Category, Language, Book
+from .serializers import CategorySerializer, LanguageSerializer, BookSerializer
 
 
-class BookListView(ListAPIView):
-    queryset = Book.objects.all()
+class BookViewSet(viewsets.ModelViewSet):
     serializer_class = BookSerializer
-
-
-class BookDetailView(RetrieveAPIView):
     queryset = Book.objects.all()
-    serializer_class = BookSerializer
+
+class CategoryViewSet(viewsets.ModelViewSet):
+    serializer_class = CategorySerializer
+    queryset = Category.objects.all()
+
+class LanguageViewSet(viewsets.ModelViewSet):
+    serializer_class = LanguageSerializer
+    queryset = Language.objects.all()
